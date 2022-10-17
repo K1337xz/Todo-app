@@ -4,6 +4,24 @@
   margin: 0;
 }
 
+:root[data-theme=light] {
+  --bgColor: hsl(236, 33%, 92%);
+  --itembgColor: hsl(0, 0%, 98%);
+  --text: hsl(235, 19%, 35%);
+  --formText: hsl(236, 9%, 61%);
+  --crossedText: hsl(233, 11%, 84%);
+  --bgimage: url(../images/bg-desktop-light.jpg);
+}
+
+:root[data-theme=dark] {
+  --bgimage: url(../images/bg-desktop-dark.jpg);
+  --bgColor: hsl(235, 21%, 11%);
+  --itembgColor: hsl(235, 24%, 19%);
+  --text: hsl(234, 39%, 85%);
+  --formText: hsl(234, 11%, 52%);
+  --crossedText: hsl(233, 14%, 35%);
+}
+
 header {
   display: flex;
   justify-content: space-evenly;
@@ -11,7 +29,7 @@ header {
   flex-direction: column;
   width: 100%;
   height: 45vh;
-  background-image: url(../images/bg-desktop-light.jpg);
+  background-image: var(--bgimage);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -20,7 +38,14 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 70%;
+  align-items: center;
+  width: 100%;
+}
+.mainNav h1 {
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 15px;
+  font-size: 50px;
 }
 .mainNav .switchTheme.moon {
   display: block;
@@ -28,4 +53,31 @@ header {
   height: 26px;
   background-image: url(../images/icon-moon.svg);
   cursor: pointer;
+}
+
+.newTodo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.newTodo .addTodo {
+  width: 43%;
+  height: 8vh;
+  border-radius: 12px;
+  padding-left: 5rem;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: var(--itembgColor);
+  color: var(--text);
+}
+.newTodo .inputCircle {
+  position: absolute;
+  left: 30%;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 1px solid var(--crossedText);
+  margin-left: 0rem;
 }/*# sourceMappingURL=style.css.map */

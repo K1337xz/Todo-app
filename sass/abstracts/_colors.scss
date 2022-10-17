@@ -4,9 +4,11 @@
 	--text: hsl(235, 19%, 35%);
 	--formText: hsl(236, 9%, 61%);
 	--crossedText: hsl(233, 11%, 84%);
+	--bgimage: url(../images/bg-desktop-light.jpg);
 }
 
 :root[data-theme="dark"] {
+	--bgimage: url(../images/bg-desktop-dark.jpg);
 	--bgColor: hsl(235, 21%, 11%);
 	--itembgColor: hsl(235, 24%, 19%);
 	--text: hsl(234, 39%, 85%);
