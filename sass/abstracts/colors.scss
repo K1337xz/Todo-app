@@ -1,0 +1,15 @@
+:root[data-theme="light"] {
+	--bgColor: hsl(236, 33%, 92%);
+	--itembgColor: hsl(0, 0%, 98%);
+	--text: hsl(235, 19%, 35%);
+	--formText: hsl(236, 9%, 61%);
+	--crossedText: hsl(233, 11%, 84%);
+}
+
+:root[data-theme="dark"] {
+	--bgColor: hsl(235, 21%, 11%);
+	--itembgColor: hsl(235, 24%, 19%);
+	--text: hsl(234, 39%, 85%);
+	--formText: hsl(234, 11%, 52%);
+	--crossedText: hsl(233, 14%, 35%);
+}
