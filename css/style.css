@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Alata&family=Inter:wght@400;700&family=Josefin+Sans:wght@300;400;700&family=Kumbh+Sans:wght@400;700&display=swap");
 * {
   box-sizing: border-box;
   padding: 0;
@@ -5,21 +6,25 @@
 }
 
 :root[data-theme=light] {
+  --brightBlue: hsl(220, 98%, 61%);
   --bgColor: hsl(236, 33%, 92%);
   --itembgColor: hsl(0, 0%, 98%);
   --text: hsl(235, 19%, 35%);
   --formText: hsl(236, 9%, 61%);
   --crossedText: hsl(233, 11%, 84%);
   --bgimage: url(../images/bg-desktop-light.jpg);
+  --bgCheckbox: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
 :root[data-theme=dark] {
+  --brightBlue: hsl(220, 98%, 61%);
   --bgimage: url(../images/bg-desktop-dark.jpg);
   --bgColor: hsl(235, 21%, 11%);
   --itembgColor: hsl(235, 24%, 19%);
   --text: hsl(234, 39%, 85%);
   --formText: hsl(234, 11%, 52%);
   --crossedText: hsl(233, 14%, 35%);
+  --bgCheckbox: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
 header {
@@ -52,6 +57,13 @@ header {
   width: 26px;
   height: 26px;
   background-image: url(../images/icon-moon.svg);
+  cursor: pointer;
+}
+.mainNav .switchTheme.sun {
+  display: block;
+  width: 26px;
+  height: 26px;
+  background-image: url(../images/icon-sun.svg);
   cursor: pointer;
 }
 
@@ -92,9 +104,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 50%;
 }
 
 .todoWrapper {
+  position: absolute;
+  top: 38%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,13 +120,105 @@ body {
   list-style: none;
 }
 .todoWrapper li {
+  display: flex;
+  align-items: center;
   list-style: none;
   height: 10vh;
-  background: blue;
-  border: 1px solid;
+  background-color: var(--itembgColor);
+  border-bottom: 1px solid var(--crossedText);
+  padding: 2rem;
+}
+.todoWrapper li:first-child {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .todoList {
-  width: 85%;
+  width: 86%;
   height: auto;
+}
+.todoList .checkedInp label {
+  margin-left: 2rem;
+  color: var(--crossedText);
+}
+.todoList li.sortbycompleted {
+  display: none;
+}
+.todoList label {
+  margin-left: 2rem;
+  color: var(--text);
+}
+
+.add_items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 86%;
+  height: 7vh;
+  padding: 1rem;
+  background-color: var(--itembgColor);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.add_items span {
+  color: var(--formText);
+}
+
+.drag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20vh;
+  color: var(--text);
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  color: var(--text);
+}
+
+.checkedInp {
+  text-decoration: line-through;
+  color: var(--crossedText);
+}
+
+input[type=text] {
+  background-color: var(--itembgColor);
+}
+
+input[type=checkbox] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 1px solid var(--crossedText);
+  cursor: pointer;
+}
+input[type=checkbox]:checked {
+  background-image: url(../images/icon-check.svg), var(--bgCheckbox);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input[type=submit] {
+  background-color: var(--itembgColor);
+  border: none;
+  cursor: pointer;
+  margin-right: 1rem;
+  color: var(--formText);
+}
+input[type=submit]:hover {
+  color: var(--brightBlue);
+  font-weight: 700;
+}
+
+* {
+  font-family: "Josefin Sans", sans-serif;
 }/*# sourceMappingURL=style.css.map */

@@ -42,63 +42,34 @@
 		</header>
 		<main class="container">
 			<div class="todoWrapper">
-				<ul class="todoList">
-					<li>
-						<input
-							type="checkbox"
-							data-index="0"
-							id="item0"
-							name="checks"
-						/>
-						<label for="item0">Zrobic sniadanie</label>
-					</li>
-					<li>
-						<input
-							type="checkbox"
-							data-index="1"
-							id="item1"
-							name="checks"
-						/>
-						<label for="item1">BLA BLA BLA</label>
-					</li>
-					<li>
-						<input
-							type="checkbox"
-							data-index="1"
-							id="item1"
-							name="checks"
-						/>
-						<label for="item1">BLA BLA BLA</label>
-					</li>
-					<li>
-						<input
-							type="checkbox"
-							data-index="1"
-							id="item1"
-							name="checks"
-						/>
-						<label for="item1">BLA BLA BLA</label>
-					</li>
-				</ul>
+				<ul class="todoList"></ul>
 				<form class="add_items">
 					<span class="itemsLeft">0 items left</span>
-					<input type="submit" value="All" class="showAll" />
-					<input type="submit" value="Active" class="showActive" />
-					<input
-						type="submit"
-						value="Completed"
-						class="showCompleted"
-					/>
+					<div class="middleInputs">
+						<input type="submit" value="All" class="showAll" />
+						<input
+							type="submit"
+							value="Active"
+							class="showActive"
+						/>
+						<input
+							type="submit"
+							value="Completed"
+							class="showCompleted"
+						/>
+					</div>
 					<input
 						type="submit"
 						value="Clear Completed"
 						class="clearCompleted"
 					/>
 				</form>
+				<div class="drag">
+					<span>Drag and drop to reorder list</span>
+				</div>
 			</div>
 		</main>
 		<footer>
-			<span>Drag and drop to reorder list</span>
 			<div class="attribution">
 				Challenge by
 				<a
@@ -108,5 +79,6 @@
 				>. Coded by <a href="#">Your Name Here</a>.
 			</div>
 		</footer>
+		<script src="script.js"></script>
 	</body>
 </html>

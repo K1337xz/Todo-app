@@ -3,3 +3,27 @@
 input[type="text"] {
 	background-color: var(--itembgColor);
 }
+input[type="checkbox"] {
+	appearance: none;
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	border: 1px solid var(--crossedText);
+	cursor: pointer;
+	&:checked {
+		background-image: url(../images/icon-check.svg), var(--bgCheckbox);
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+}
+input[type="submit"] {
+	background-color: var(--itembgColor);
+	border: none;
+	cursor: pointer;
+	margin-right: 1rem;
+	color: var(--formText);
+	&:hover {
+		color: var(--brightBlue);
+		font-weight: 700;
+	}
+}

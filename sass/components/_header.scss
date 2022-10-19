@@ -31,6 +31,13 @@ header {
 		background-image: url(../images/icon-moon.svg);
 		cursor: pointer;
 	}
+	.switchTheme.sun {
+		display: block;
+		width: 26px;
+		height: 26px;
+		background-image: url(../images/icon-sun.svg);
+		cursor: pointer;
+	}
 }
 .newTodo {
 	display: flex;
