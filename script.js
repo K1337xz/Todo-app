@@ -1,6 +1,5 @@
 //theme switcher
 const dataTheme = document.querySelector("html");
-
 const switchTheme = document.querySelector(".switchTheme");
 
 switchTheme.addEventListener("click", () => {
@@ -104,6 +103,7 @@ function completedTodos(e) {
 
 //show all todo`s
 const allTodos = document.querySelector(".showAll");
+
 function showAll(e) {
 	for (let j = 0; j < checkedInp.length; j++) {
 		checkedInp[j].parentNode.style.display = `flex`;
@@ -123,18 +123,28 @@ function showActive(e) {
 	e.preventDefault();
 }
 //items left
-
 const itemLeft = document.querySelector(".itemsLeft");
 
 function todoCounter(e) {
-	const blas = itemList.querySelectorAll(".unchecked");
-	itemLeft.innerHTML = `${blas.length} items left`;
+	const uncheck = itemList.querySelectorAll(".unchecked");
+	itemLeft.innerHTML = `${uncheck.length} items left`;
 }
+//clear complete todo`s
+const clearCompleted = document.querySelector(".clearCompleted");
 
+function clearCompletedTodo(e) {
+	for (let x = 0; x < checkedInp.length; x++) {
+		if (checkedInp[x].checked) {
+		}
+	}
+
+	e.preventDefault();
+}
 allTodos.addEventListener("click", showAll);
 completed.addEventListener("click", completedTodos);
 addItems.addEventListener("keyup", addItem);
 itemList.addEventListener("click", toggleDone);
 activeTrigger.addEventListener("click", showActive);
+clearCompleted.addEventListener("click", clearCompletedTodo);
 todoList(items, itemList);
 todoCounter();
