@@ -63,15 +63,19 @@ function todoList(todo = [], listTodo) {
 	listTodo.innerHTML = todo
 		.map((list, i) => {
 			return `
-        <li class="${list.done ? "checkedInp" : "unchecked"}">
+        <li class="${list.done ? "checkedInp" : "unchecked"}" value="${i}">
             <input type="checkbox" data-index=${i} id="item${i}" name="checks" ${
 				list.done ? "checked" : ""
 			}/>
             <label for="item${i} ">${list.text}</label>
+			<div class="wrapperDelete">
+				<span class="deleteTodo"></span>
+			</div>
         </li>
         `;
 		})
 		.join("");
+	todoCounter();
 }
 
 function toggleDone(e) {
@@ -80,35 +84,57 @@ function toggleDone(e) {
 	const index = el.dataset.index;
 	items[index].done = !items[index].done;
 	localStorage.setItem("items", JSON.stringify(items));
-
 	todoList(items, itemList);
+	todoCounter();
 }
 
 //show completed todo`s
 const completed = document.querySelector(".showCompleted");
-
-function completedTodos(complete = [], completeList) {
-	completeList.innerHTML = complete
-		.map((list, i) => {
-			return `
-        <li class="${list.done ? "checkedInp'" : "sortbycompleted"}">
-            <input type="checkbox" data-index=${i} id="item${i}" name="checks" checked/>
-            <label for="item${i} ">${list.text}</label>
-        </li>
-        `;
-		})
-		.join("");
+const checkedInp = document.getElementsByName("checks");
+function completedTodos(e) {
+	for (let i = 0; i < checkedInp.length; i++) {
+		if (!checkedInp[i].checked) {
+			checkedInp[i].parentNode.style.display = `none`;
+		} else if (checkedInp[i].checked) {
+			checkedInp[i].parentNode.style.display = ``;
+		}
+	}
+	e.preventDefault();
 }
 
 //show all todo`s
-const allTodoTrigger = document.querySelector(".showAll");
-function allTd(e) {
-	console.log("chuj");
+const allTodos = document.querySelector(".showAll");
+function showAll(e) {
+	for (let j = 0; j < checkedInp.length; j++) {
+		checkedInp[j].parentNode.style.display = `flex`;
+	}
+}
+//show active todo's
+const activeTrigger = document.querySelector(".showActive");
+
+function showActive(e) {
+	for (let z = 0; z < checkedInp.length; z++) {
+		if (checkedInp[z].checked) {
+			checkedInp[z].parentNode.style.display = `none`;
+		} else if (!checkedInp[z].checked) {
+			checkedInp[z].parentNode.style.display = ``;
+		}
+	}
+	e.preventDefault();
+}
+//items left
+
+const itemLeft = document.querySelector(".itemsLeft");
+
+function todoCounter(e) {
+	const blas = itemList.querySelectorAll(".unchecked");
+	itemLeft.innerHTML = `${blas.length} items left`;
 }
 
-allTodoTrigger.addEventListener("click", allTd);
+allTodos.addEventListener("click", showAll);
 completed.addEventListener("click", completedTodos);
 addItems.addEventListener("keyup", addItem);
-todoList(items, itemList);
-/* completedTodos(items, itemList); */
 itemList.addEventListener("click", toggleDone);
+activeTrigger.addEventListener("click", showActive);
+todoList(items, itemList);
+todoCounter();
