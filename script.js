@@ -100,7 +100,15 @@ function completedTodos(complete = [], completeList) {
 		.join("");
 }
 
+//show all todo`s
+const allTodoTrigger = document.querySelector(".showAll");
+function allTd(e) {
+	console.log("chuj");
+}
+
+allTodoTrigger.addEventListener("click", allTd);
 completed.addEventListener("click", completedTodos);
 addItems.addEventListener("keyup", addItem);
 todoList(items, itemList);
+/* completedTodos(items, itemList); */
 itemList.addEventListener("click", toggleDone);
