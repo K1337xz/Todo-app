@@ -68,7 +68,7 @@ function todoList(todo = [], listTodo) {
 			}/>
             <label for="item${i} ">${list.text}</label>
 			<div class="wrapperDelete">
-				<span class="deleteTodo"></span>
+				<span class="deleteTodo" onclick=deleteTodos()></span>
 			</div>
         </li>
         `;
@@ -132,19 +132,32 @@ function todoCounter(e) {
 //clear complete todo`s
 const clearCompleted = document.querySelector(".clearCompleted");
 
-function clearCompletedTodo(e) {
-	for (let x = 0; x < checkedInp.length; x++) {
-		if (checkedInp[x].checked) {
-		}
-	}
-
-	e.preventDefault();
+function clearCompletedTodo() {
+	let itemsfromStorage = JSON.parse(localStorage.getItem("items"));
+	let activeTodoFilter = itemsfromStorage.filter(
+		(item) => item.done === false
+	);
+	console.log(JSON.stringify(activeTodoFilter));
+	localStorage.setItem("items", JSON.stringify(activeTodoFilter));
 }
+
+//delete todo
+const deleteTrigger = document.querySelector(".deleteTodo");
+
+function deleteTodos(index) {
+	let deleteItem = JSON.parse(localStorage.getItem("items"));
+	let num = (deleteItem.length -= 1);
+	let del = deleteItem.splice(index, num);
+	localStorage.setItem("items", JSON.stringify(del));
+	window.location.reload();
+}
+
 allTodos.addEventListener("click", showAll);
 completed.addEventListener("click", completedTodos);
 addItems.addEventListener("keyup", addItem);
 itemList.addEventListener("click", toggleDone);
 activeTrigger.addEventListener("click", showActive);
 clearCompleted.addEventListener("click", clearCompletedTodo);
+
 todoList(items, itemList);
 todoCounter();
