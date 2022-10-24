@@ -62,15 +62,15 @@ function todoList(todo = [], listTodo) {
 	listTodo.innerHTML = todo
 		.map((list, i) => {
 			return `
-        <li class="${list.done ? "checkedInp" : "unchecked"}" value="${i}">
+        <li class="${
+			list.done ? "checkedInp" : "unchecked"
+		}" draggable="true" ondragstart="dragStart(event, id)" id='drag-${i}'>
             <input type="checkbox" data-index=${i} id="item${i}" name="checks" ${
 				list.done ? "checked" : ""
 			}/>
             <label for="item${i} ">${list.text}</label>
-			<div class="wrapperDelete">
-				<span class="deleteTodo" onclick=deleteTodos()></span>
-			</div>
-        </li>
+			<span class="deleteTodo" data-index="${i}" onclick="deleteTodos(id)" id="it${i}"></span>
+			</li>
         `;
 		})
 		.join("");
@@ -124,14 +124,12 @@ function showActive(e) {
 }
 //items left
 const itemLeft = document.querySelector(".itemsLeft");
-
 function todoCounter(e) {
 	const uncheck = itemList.querySelectorAll(".unchecked");
 	itemLeft.innerHTML = `${uncheck.length} items left`;
 }
 //clear complete todo`s
 const clearCompleted = document.querySelector(".clearCompleted");
-
 function clearCompletedTodo() {
 	let itemsfromStorage = JSON.parse(localStorage.getItem("items"));
 	let activeTodoFilter = itemsfromStorage.filter(
@@ -142,15 +140,18 @@ function clearCompletedTodo() {
 }
 
 //delete todo
-const deleteTrigger = document.querySelector(".deleteTodo");
 
-function deleteTodos(index) {
-	let deleteItem = JSON.parse(localStorage.getItem("items"));
-	let num = (deleteItem.length -= 1);
-	let del = deleteItem.splice(index, num);
-	localStorage.setItem("items", JSON.stringify(del));
+function deleteTodos(id) {
+	let bla = itemList.querySelectorAll(".deleteTodo");
+	let clickID = document.getElementById(`${id}`);
+	let clickParentVal = clickID.parentElement.value;
+	let itemsfromStorage = JSON.parse(localStorage.getItem("items"));
+	itemsfromStorage.splice(clickParentVal, 1);
+	localStorage.setItem("items", JSON.stringify(itemsfromStorage));
 	window.location.reload();
 }
+
+//drag and drop
 
 allTodos.addEventListener("click", showAll);
 completed.addEventListener("click", completedTodos);
@@ -158,6 +159,5 @@ addItems.addEventListener("keyup", addItem);
 itemList.addEventListener("click", toggleDone);
 activeTrigger.addEventListener("click", showActive);
 clearCompleted.addEventListener("click", clearCompletedTodo);
-
 todoList(items, itemList);
 todoCounter();

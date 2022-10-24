@@ -95,6 +95,8 @@ footer {
 }
 
 .deleteTodo {
+	right: 10%;
+	position: absolute;
 	display: block;
 	width: 40px;
 	height: 40px;
@@ -102,4 +104,5 @@ footer {
 	background-repeat: no-repeat;
 	background-position: center;
 	cursor: pointer;
+	margin-top: -1.5rem;
 }
