@@ -208,6 +208,10 @@ footer {
   margin-top: -1.5rem;
 }
 
+.dragging {
+  background-color: hsl(236deg, 24%, 25%) !important;
+}
+
 input[type=text] {
   background-color: var(--itembgColor);
 }

@@ -43,8 +43,8 @@ const circle = document.querySelector(".inputCircle");
 
 function addItem(e) {
 	e.preventDefault();
-	if (e.key === `Enter`) {
-		const text = addItems.value;
+	const text = addItems.value;
+	if (e.key === `Enter` && text > 0) {
 		const item = {
 			text,
 			done: false,
@@ -64,7 +64,7 @@ function todoList(todo = [], listTodo) {
 			return `
         <li class="${
 			list.done ? "checkedInp" : "unchecked"
-		}" draggable="true" ondragstart="dragStart(event, id)" id='drag-${i}'>
+		}" draggable="true" ondragstart="dragStart(event)" ondragend='dragEnd(event)' id="drag">
             <input type="checkbox" data-index=${i} id="item${i}" name="checks" ${
 				list.done ? "checked" : ""
 			}/>
@@ -103,7 +103,6 @@ function completedTodos(e) {
 
 //show all todo`s
 const allTodos = document.querySelector(".showAll");
-
 function showAll(e) {
 	for (let j = 0; j < checkedInp.length; j++) {
 		checkedInp[j].parentNode.style.display = `flex`;
@@ -111,7 +110,6 @@ function showAll(e) {
 }
 //show active todo's
 const activeTrigger = document.querySelector(".showActive");
-
 function showActive(e) {
 	for (let z = 0; z < checkedInp.length; z++) {
 		if (checkedInp[z].checked) {
@@ -152,7 +150,42 @@ function deleteTodos(id) {
 }
 
 //drag and drop
+function dragStart(event) {
+	event.target.classList.add("dragging");
+}
 
+function dragEnd(event) {
+	event.target.classList.remove("dragging");
+}
+function dragOver(event) {
+	const draggable = itemList.querySelector(".dragging");
+	event.preventDefault();
+	const afterElement = getDragAfterElement(itemList, event.clientY);
+	if (afterElement == null) {
+		itemList.appendChild(draggable);
+	} else {
+		itemList.insertBefore(draggable, afterElement);
+	}
+}
+function getDragAfterElement(itemList, y) {
+	const draggableElements = [
+		...itemList.querySelectorAll(`#drag:not(.dragging)`),
+	];
+	return draggableElements.reduce(
+		(closest, child) => {
+			const box = child.getBoundingClientRect();
+			const offset = y - box.top - box.height / 2;
+			if (offset < 0 && offset > closest.offset) {
+				return { offset: offset, element: child };
+			} else {
+				return closest;
+			}
+		},
+		{
+			offset: Number.NEGATIVE_INFINITY,
+		}
+	).element;
+}
 allTodos.addEventListener("click", showAll);
 completed.addEventListener("click", completedTodos);
 addItems.addEventListener("keyup", addItem);

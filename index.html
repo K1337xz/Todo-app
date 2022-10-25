@@ -37,12 +37,13 @@
 					type="text"
 					class="addTodo"
 					placeholder="Create a new todo..."
+					required
 				/>
 			</div>
 		</header>
 		<main class="container">
 			<div class="todoWrapper">
-				<ul class="todoList" ondragover="getDragAfterElement()"></ul>
+				<ul class="todoList" ondragover="dragOver(event)"></ul>
 				<form class="add_items">
 					<span class="itemsLeft">0 items left</span>
 					<div class="middleInputs">
