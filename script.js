@@ -138,15 +138,15 @@ function clearCompletedTodo() {
 }
 
 //delete todo
-
 function deleteTodos(id) {
-	let bla = itemList.querySelectorAll(".deleteTodo");
+	let bla = itemList.querySelectorAll("li");
+
 	let clickID = document.getElementById(`${id}`);
 	let clickParentVal = clickID.parentElement.value;
 	let itemsfromStorage = JSON.parse(localStorage.getItem("items"));
 	itemsfromStorage.splice(clickParentVal, 1);
 	localStorage.setItem("items", JSON.stringify(itemsfromStorage));
-	window.location.reload();
+	location.reload();
 }
 
 //drag and drop
