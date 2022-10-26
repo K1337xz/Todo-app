@@ -64,7 +64,7 @@ function todoList(todo = [], listTodo) {
 			return `
         <li class="${
 			list.done ? "checkedInp" : "unchecked"
-		}" draggable="true" ondragstart="dragStart(event)" ondragend='dragEnd(event)'value="${i}" id="drag">
+		}" draggable="true" ondragstart="dragStart(event)" ondragend='dragEnd(event)' value="${i}" id="drag">
             <input type="checkbox" data-index=${i} id="item${i}" name="checks" ${
 				list.done ? "checked" : ""
 			}/>
@@ -194,6 +194,8 @@ function getDragAfterElement(itemList, y) {
 		}
 	).element;
 }
+
+//mobile drag and drop
 allTodos.addEventListener("click", showAll);
 completed.addEventListener("click", completedTodos);
 addItems.addEventListener("keyup", addItem);
