@@ -286,7 +286,7 @@ footer {
 @media (max-width: 700px) {
   .todoWrapper {
     position: absolute;
-    top: 28%;
+    top: 45%;
     display: flex;
     align-items: center;
     justify-content: center;
