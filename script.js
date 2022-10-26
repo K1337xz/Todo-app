@@ -44,7 +44,7 @@ const circle = document.querySelector(".inputCircle");
 function addItem(e) {
 	e.preventDefault();
 	const text = addItems.value;
-	if (e.key === `Enter` && text > 0) {
+	if (e.key === `Enter` && text.length > 0) {
 		const item = {
 			text,
 			done: false,
@@ -64,7 +64,7 @@ function todoList(todo = [], listTodo) {
 			return `
         <li class="${
 			list.done ? "checkedInp" : "unchecked"
-		}" draggable="true" ondragstart="dragStart(event)" ondragend='dragEnd(event)' id="drag">
+		}" draggable="true" ondragstart="dragStart(event)" ondragend='dragEnd(event)'value="${i}" id="drag">
             <input type="checkbox" data-index=${i} id="item${i}" name="checks" ${
 				list.done ? "checked" : ""
 			}/>
@@ -139,14 +139,13 @@ function clearCompletedTodo() {
 
 //delete todo
 function deleteTodos(id) {
-	let bla = itemList.querySelectorAll("li");
-
+	let bla = itemList.querySelectorAll(".deleteTodo");
 	let clickID = document.getElementById(`${id}`);
 	let clickParentVal = clickID.parentElement.value;
 	let itemsfromStorage = JSON.parse(localStorage.getItem("items"));
 	itemsfromStorage.splice(clickParentVal, 1);
 	localStorage.setItem("items", JSON.stringify(itemsfromStorage));
-	location.reload();
+	window.location.reload();
 }
 
 //drag and drop
@@ -160,12 +159,21 @@ function dragEnd(event) {
 function dragOver(event) {
 	const draggable = itemList.querySelector(".dragging");
 	event.preventDefault();
+	let newList = itemList.querySelectorAll("li");
+	let sortedElementsToLocal = [...newList].map(function (item) {
+		return {
+			text: item.querySelector("label").textContent,
+			done: item.querySelector("input").checked,
+		};
+	});
+
 	const afterElement = getDragAfterElement(itemList, event.clientY);
 	if (afterElement == null) {
 		itemList.appendChild(draggable);
 	} else {
 		itemList.insertBefore(draggable, afterElement);
 	}
+	localStorage.setItem("items", JSON.stringify(sortedElementsToLocal));
 }
 function getDragAfterElement(itemList, y) {
 	const draggableElements = [

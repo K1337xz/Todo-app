@@ -13,12 +13,14 @@
   --formText: hsl(236, 9%, 61%);
   --crossedText: hsl(233, 11%, 84%);
   --bgimage: url(../images/bg-desktop-light.jpg);
+  --bgMobile: url(../images/bg-mobile-light.jpg);
   --bgCheckbox: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
 :root[data-theme=dark] {
   --brightBlue: hsl(220, 98%, 61%);
   --bgimage: url(../images/bg-desktop-dark.jpg);
+  --bgMobile: url(../images/bg-mobile-dark.jpg);
   --bgColor: hsl(235, 21%, 11%);
   --itembgColor: hsl(235, 24%, 19%);
   --text: hsl(234, 39%, 85%);
@@ -94,6 +96,75 @@ header {
   margin-left: 0rem;
 }
 
+@media (max-width: 700px) {
+  header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 45vh;
+    background-image: var(--bgMobile);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .mainNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+    gap: 5rem;
+  }
+  .mainNav h1 {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 15px;
+    font-size: 30px;
+  }
+  .mainNav .switchTheme.moon {
+    display: block;
+    width: 26px;
+    height: 26px;
+    background-image: url(../images/icon-moon.svg);
+    cursor: pointer;
+  }
+  .mainNav .switchTheme.sun {
+    display: block;
+    width: 26px;
+    height: 26px;
+    background-image: url(../images/icon-sun.svg);
+    cursor: pointer;
+  }
+  .newTodo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 4rem;
+  }
+  .newTodo .addTodo {
+    width: 80%;
+    height: 8vh;
+    border-radius: 5px;
+    padding-left: 5rem;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: var(--itembgColor);
+    color: var(--text);
+  }
+  .newTodo .inputCircle {
+    position: absolute;
+    left: 15%;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: 1px solid var(--crossedText);
+    margin-left: 0rem;
+  }
+}
 body {
   width: 100%;
   height: 100vh;
@@ -212,6 +283,76 @@ footer {
   background-color: hsl(236deg, 24%, 25%) !important;
 }
 
+@media (max-width: 700px) {
+  .todoWrapper {
+    position: absolute;
+    top: 28%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 95%;
+  }
+  .todoWrapper ul {
+    list-style: none;
+  }
+  .todoWrapper li {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 6vh;
+    background-color: var(--itembgColor);
+    border-bottom: 1px solid var(--crossedText);
+    padding: 2rem;
+  }
+  .todoWrapper li:first-child {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+  .deleteTodo {
+    margin-top: -0.5rem;
+  }
+  .todoList {
+    width: 85%;
+    height: auto;
+  }
+  .todoList .checkedInp label {
+    margin-left: 2rem;
+    color: var(--crossedText);
+  }
+  .todoList li.sortbycompleted {
+    display: none;
+  }
+  .todoList label {
+    margin-left: 2rem;
+    color: var(--text);
+  }
+  .add_items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+    height: 7vh;
+    padding: 1rem;
+    background-color: var(--itembgColor);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    font-size: 13px;
+  }
+  .add_items span {
+    color: var(--formText);
+  }
+  .middleInputs {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 85%;
+    height: 5vh;
+    margin-top: 7rem;
+    margin-left: -1rem;
+    background: var(--itembgColor);
+  }
+}
 input[type=text] {
   background-color: var(--itembgColor);
 }
@@ -244,6 +385,35 @@ input[type=submit]:hover {
   font-weight: 700;
 }
 
+@media (max-width: 700px) {
+  input[type=checkbox] {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: 1px solid var(--crossedText);
+    cursor: pointer;
+  }
+  input[type=checkbox]:checked {
+    background-image: url(../images/icon-check.svg), var(--bgCheckbox);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  input[type=submit] {
+    background-color: var(--itembgColor);
+    border: none;
+    cursor: pointer;
+    margin-right: 1rem;
+    color: var(--formText);
+    font-size: 10px;
+  }
+  input[type=submit]:hover {
+    color: var(--brightBlue);
+    font-weight: 700;
+  }
+}
 * {
   font-family: "Josefin Sans", sans-serif;
 }/*# sourceMappingURL=style.css.map */

@@ -1,5 +1,6 @@
 @use "../abstracts/colors.scss" as *;
 @use "../abstracts/colors" as *;
+@use "../components/brakepoints" as *;
 
 body {
 	width: 100%;
@@ -108,4 +109,75 @@ footer {
 }
 .dragging {
 	background-color: hsl(236, 24%, 25%) !important;
+}
+
+@include md {
+	.todoWrapper {
+		position: absolute;
+		top: 28%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		width: 95%;
+		ul {
+			list-style: none;
+		}
+		li {
+			display: flex;
+			align-items: center;
+			list-style: none;
+			height: 6vh;
+			background-color: var(--itembgColor);
+			border-bottom: 1px solid var(--crossedText);
+			padding: 2rem;
+			&:first-child {
+				border-top-left-radius: 6px;
+				border-top-right-radius: 6px;
+			}
+		}
+	}
+	.deleteTodo {
+		margin-top: -0.5rem;
+	}
+	.todoList {
+		width: 85%;
+		height: auto;
+		.checkedInp label {
+			margin-left: 2rem;
+			color: var(--crossedText);
+		}
+		li.sortbycompleted {
+			display: none;
+		}
+		label {
+			margin-left: 2rem;
+			color: var(--text);
+		}
+	}
+	.add_items {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 85%;
+		height: 7vh;
+		padding: 1rem;
+		background-color: var(--itembgColor);
+		border-bottom-left-radius: 6px;
+		border-bottom-right-radius: 6px;
+		font-size: 13px;
+		span {
+			color: var(--formText);
+		}
+	}
+	.middleInputs {
+		display: flex;
+		justify-content: center;
+		position: absolute;
+		width: 85%;
+		height: 5vh;
+		margin-top: 7rem;
+		margin-left: -1rem;
+		background: var(--itembgColor);
+	}
 }

@@ -6,12 +6,14 @@
 	--formText: hsl(236, 9%, 61%);
 	--crossedText: hsl(233, 11%, 84%);
 	--bgimage: url(../images/bg-desktop-light.jpg);
+	--bgMobile: url(../images/bg-mobile-light.jpg);
 	--bgCheckbox: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
 :root[data-theme="dark"] {
 	--brightBlue: hsl(220, 98%, 61%);
 	--bgimage: url(../images/bg-desktop-dark.jpg);
+	--bgMobile: url(../images/bg-mobile-dark.jpg);
 	--bgColor: hsl(235, 21%, 11%);
 	--itembgColor: hsl(235, 24%, 19%);
 	--text: hsl(234, 39%, 85%);
